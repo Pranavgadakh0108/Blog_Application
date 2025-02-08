@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Blog Posts</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+	<style>
+		#nv {
+			background-image: linear-gradient(to right, #4568dc, #b06ab3);
+		}
+
+		#mycard {
+			background-image: linear-gradient(to bottom right, #f9d423, #e14fad);
+			margin-top: 5%;
+			margin-left: 25%;
+			box-shadow: lightgreen 0px 0px 0px 4px;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="container mt-5">
+
+		<nav class="navbar border-bottom border-body" id="nv">
+			<div class="container-fluid">
+				<span class="navbar-brand mb-0 h1">
+					<h2 style="color: white;	"><i class="fa-solid fa-blog" style="color: rgb(255, 255, 0);"></i>
+						Blog Management System</h2>
+				</span>
+
+				<div class="d-grid gap-2 d-md-flex justify-content-md-end">
+					<a th:href="@{/}"><button class="btn btn-info me-md-2" type="button"><i
+								class="fa-regular fa-id-card" style="color: rgb(0, 128, 0);"></i> Blogger Login
+						</button></a>
+				</div>
+			</div>
+		</nav>
+
+		<div class="card w-50" id="mycard">
+			<div class="card-body">
+				<h2 class="card-title" style="text-align: center; color: blueviolet;"><b>Blogger Registration</b></h2>
+
+				<div th:if="${successMsg}">
+					<h3 style="color: green;" th:text="${successMsg}"></h3>
+				</div>
+
+				<div th:if="${errorMsg}">
+					<h3 style="color: red;" th:text="${errorMsg}"></h3>
+				</div>
+
+				<form th:action="@{/regForm}" th:object="${blogger}" method="post">
+					<div class="mb-3">
+						<label for="exampleInputEmail1" class="form-label"><b>Name</b></label>
+						<input type="text" th:field="*{name}" class="form-control" id="exampleInputEmail1"
+							aria-describedby="emailHelp" name="name" required>
+					</div>
+					<div class="mb-3">
+						<label for="exampleInputEmail2" class="form-label"><b>Email</b></label>
+						<input type="email" th:field="*{email}" class="form-control" id="exampleInputEmail2"
+							aria-describedby="emailHelp" name="email" required>
+					</div>
+					<div class="mb-3">
+						<label for="exampleInputPassword1" class="form-label"><b>Password</b></label>
+						<input type="password" th:field="*{password}" class="form-control" id="exampleInputPassword1"
+							name="password" required>
+					</div>
+					<div class="mb-3">
+						<label for="exampleInputPassword1" class="form-label"><b>Phone No</b></label>
+						<input type="text" th:field="*{phoneno}" class="form-control" id="exampleInputPassword1"
+							name="password" required>
+					</div>
+					<div class="d-grid gap-2 col-6 mx-auto">
+						<button type="submit" class="btn btn-success"
+							onclick="alert('Blogger Registered!!!')">Register</button>
+
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
